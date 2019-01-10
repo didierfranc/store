@@ -15,6 +15,12 @@ export default class Store {
   };
   public delete = (key: string) => {
     this.data.delete(key);
+
+    const subscriptions = this.subscriptions.get(key);
+
+    if (subscriptions) {
+      subscriptions.forEach(fn => fn(null));
+    }
   };
 
   public subscribe = (key: string, fn: (value: any) => void) => {
