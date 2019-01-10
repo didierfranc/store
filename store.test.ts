@@ -16,5 +16,5 @@ test("listener set, delete", () => {
   store.set("value", 2);
   expect(listener).toBeCalledWith(2);
   store.delete("value");
-  expect(listener).toBeCalledWith(null);
+  expect(listener).toBeCalledWith();
 });
