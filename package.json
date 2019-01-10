@@ -1,0 +1,29 @@
+{
+  "name": "@fromscratch/store",
+  "version": "1.0.0-beta.2",
+  "description": "The simplest store",
+  "main": "dist/store.js",
+  "types": "dist/store.d.ts",
+  "files": [
+    "dist/store.js",
+    "dist/store.d.ts",
+    "package.json",
+    "README.md"
+  ],
+  "repository": "git@github.com:didierfranc/store.git",
+  "author": "Didier Franc <didierfranc@me.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "jest": "^23.6.0",
+    "terser": "^3.14.1",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.2"
+  },
+  "scripts": {
+    "build": "tsc; terser dist/store.js -m --toplevel -c -o dist/store.js",
+    "test": "jest",
+    "publish": "yarn build; npm publish"
+  }
+}
