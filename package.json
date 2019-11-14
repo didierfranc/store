@@ -1,6 +1,6 @@
 {
   "name": "@fromscratch/store",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.1",
   "description": "The simplest store",
   "main": "dist/store.js",
   "types": "dist/store.d.ts",
@@ -24,6 +24,6 @@
   "scripts": {
     "build": "tsc; terser dist/store.js -m --toplevel -c -o dist/store.js",
     "test": "jest",
-    "publish": "yarn build; npm publish"
+    "package:publish": "yarn build; npm publish"
   }
 }
