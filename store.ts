@@ -1,10 +1,10 @@
-export default class Store {
-  private data = new Map<string, any>();
-  private subscriptions = new Map<string, ((value?: any) => void)[]>();
+export default class Store<T> {
+  private data = new Map<string, T>();
+  private subscriptions = new Map<string, ((value?: T) => void)[]>();
 
-  public get = (key: string, defaultValue?: any) =>
+  public get = (key: string, defaultValue?: T) =>
     this.data.get(key) || defaultValue;
-  public set = (key: string, value: any) => {
+  public set = (key: string, value: T) => {
     this.data.set(key, value);
 
     const subscriptions = this.subscriptions.get(key);
@@ -23,7 +23,7 @@ export default class Store {
     }
   };
 
-  public subscribe = (key: string, fn: (value?: any) => void) => {
+  public subscribe = (key: string, fn: (value?: T) => void) => {
     const subscriptions = this.subscriptions.get(key);
 
     if (subscriptions) {
@@ -35,9 +35,12 @@ export default class Store {
     return () => this.unsubscribe(key, fn);
   };
 
-  private unsubscribe = (key: string, fnToDelete: (value?: any) => void) => {
+  private unsubscribe = (key: string, fnToDelete: (value?: T) => void) => {
     const subscriptions = this.subscriptions.get(key);
-    this.subscriptions.set(key, subscriptions.filter(fn => fn !== fnToDelete));
+    this.subscriptions.set(
+      key,
+      subscriptions.filter(fn => fn !== fnToDelete)
+    );
   };
 }
 
